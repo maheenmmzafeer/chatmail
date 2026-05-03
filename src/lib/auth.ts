@@ -48,5 +48,12 @@ export const authOptions: AuthOptions = {
       }
       return session
     },
+
+    async signIn({ user, account }) {
+      if (!user || !account) {
+        return false
+      }
+      return true
+    },
   },
 }

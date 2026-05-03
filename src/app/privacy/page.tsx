@@ -14,7 +14,7 @@ export default function PrivacyPolicy() {
             We do NOT store your emails, personal messages, or contact lists on our servers.
           </p>
           <p>All authentication is handled securely via Google OAuth 2.0. When you sign in, we receive an access token that allows us to display your emails in real-time. This token is stored securely and is only used to facilitate the ChatMail experience.</p>
-          <p>We do not share your information with third parties, and we do not use your data for advertising or tracking purposes.</p>
+          <p>We do not share your information with third parties and we do not use your data for advertising or tracking purposes.</p>
         </div>
         <div className="flex flex-col items-center pt-8 border-t border-white/10">
           <span className="text-[#8696a0] mb-2 text-sm">For questions, contact us at</span>
