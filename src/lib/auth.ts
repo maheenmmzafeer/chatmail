@@ -65,17 +65,21 @@ export const authOptions: AuthOptions = {
 
         console.log("Sign-in attempt:", { email: user.email, name: user.name });
 
+        // Check if account is null
+        if (!account) {
+          console.error("Sign-in failed: Missing account information.");
+          return false;
+        }
+
         // Check if the user already exists in the database
-        const existingUser = await prisma.user.findUnique({
+        let existingUser = await prisma.user.findUnique({
           where: { email: user.email },
         });
 
-        if (existingUser) {
-          console.log("Existing user found:", existingUser);
-        } else {
+        if (!existingUser) {
           console.log("No existing user found. Creating new user...");
           // Create a new user if none exists
-          await prisma.user.create({
+          existingUser = await prisma.user.create({
             data: {
               email: user.email,
               name: user.name,
@@ -83,6 +87,36 @@ export const authOptions: AuthOptions = {
             },
           });
           console.log("New user created successfully.");
+        }
+
+        // Check if an account already exists for this user and provider
+        const existingAccount = await prisma.account.findFirst({
+          where: {
+            userId: existingUser.id,
+            provider: account.provider,
+            providerAccountId: account.providerAccountId,
+          },
+        });
+
+        if (!existingAccount) {
+          console.log("No existing account found. Creating new account...");
+          // Create a new account entry
+          await prisma.account.create({
+            data: {
+              userId: existingUser.id,
+              type: account.type,
+              provider: account.provider,
+              providerAccountId: account.providerAccountId,
+              access_token: account.access_token,
+              refresh_token: account.refresh_token,
+              expires_at: account.expires_at,
+              token_type: account.token_type,
+              scope: account.scope,
+              id_token: account.id_token,
+              session_state: account.session_state,
+            },
+          });
+          console.log("New account created successfully.");
         }
 
         return true;
