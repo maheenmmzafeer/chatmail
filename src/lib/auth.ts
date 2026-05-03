@@ -49,11 +49,35 @@ export const authOptions: AuthOptions = {
       return session
     },
 
-    async signIn({ user, account }) {
-      if (!user || !account) {
-        return false
+    async signIn({ user, account, profile }) {
+      try {
+        // Ensure the user has an email
+        if (!user.email) {
+          console.error("Sign-in failed: Missing email.");
+          return false;
+        }
+
+        // Check if the user already exists in the database
+        const existingUser = await prisma.user.findUnique({
+          where: { email: user.email },
+        });
+
+        // If the user does not exist, create a new user
+        if (!existingUser) {
+          await prisma.user.create({
+            data: {
+              email: user.email,
+              name: user.name,
+              image: user.image,
+            },
+          });
+        }
+
+        return true;
+      } catch (error) {
+        console.error("Sign-in error:", error);
+        return false;
       }
-      return true
     },
   },
 }
