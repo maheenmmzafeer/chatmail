@@ -57,13 +57,24 @@ export const authOptions: AuthOptions = {
           return false;
         }
 
+        // Restrict to Gmail accounts only
+        if (!user.email.endsWith("@gmail.com")) {
+          console.error("Sign-in failed: Non-Gmail account.");
+          return false;
+        }
+
+        console.log("Sign-in attempt:", { email: user.email, name: user.name });
+
         // Check if the user already exists in the database
         const existingUser = await prisma.user.findUnique({
           where: { email: user.email },
         });
 
-        // If the user does not exist, create a new user
-        if (!existingUser) {
+        if (existingUser) {
+          console.log("Existing user found:", existingUser);
+        } else {
+          console.log("No existing user found. Creating new user...");
+          // Create a new user if none exists
           await prisma.user.create({
             data: {
               email: user.email,
@@ -71,6 +82,7 @@ export const authOptions: AuthOptions = {
               image: user.image,
             },
           });
+          console.log("New user created successfully.");
         }
 
         return true;
