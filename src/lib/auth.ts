@@ -49,36 +49,28 @@ export const authOptions: AuthOptions = {
       return session
     },
 
-    async signIn({ user, account, profile }) {
+    async signIn({ user, account }) {
       try {
-        // Ensure the user has an email
         if (!user.email) {
           console.error("Sign-in failed: Missing email.");
           return false;
         }
 
-        // Restrict to Gmail accounts only
         if (!user.email.endsWith("@gmail.com")) {
           console.error("Sign-in failed: Non-Gmail account.");
           return false;
         }
 
-        console.log("Sign-in attempt:", { email: user.email, name: user.name });
-
-        // Check if account is null
         if (!account) {
           console.error("Sign-in failed: Missing account information.");
           return false;
         }
 
-        // Check if the user already exists in the database
         let existingUser = await prisma.user.findUnique({
           where: { email: user.email },
         });
 
         if (!existingUser) {
-          console.log("No existing user found. Creating new user...");
-          // Create a new user if none exists
           existingUser = await prisma.user.create({
             data: {
               email: user.email,
@@ -86,10 +78,8 @@ export const authOptions: AuthOptions = {
               image: user.image,
             },
           });
-          console.log("New user created successfully.");
         }
 
-        // Check if an account already exists for this user and provider
         const existingAccount = await prisma.account.findFirst({
           where: {
             userId: existingUser.id,
@@ -99,8 +89,6 @@ export const authOptions: AuthOptions = {
         });
 
         if (!existingAccount) {
-          console.log("No existing account found. Creating new account...");
-          // Create a new account entry
           await prisma.account.create({
             data: {
               userId: existingUser.id,
@@ -116,7 +104,6 @@ export const authOptions: AuthOptions = {
               session_state: account.session_state,
             },
           });
-          console.log("New account created successfully.");
         }
 
         return true;

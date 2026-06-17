@@ -6,7 +6,7 @@ import ChatView from '@/components/chat-view';
 import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { StatusIcon, NewChatIcon, MenuIcon, LockIcon, SearchIcon, SendIcon } from '@/components/icons';
+import { StatusIcon, NewChatIcon, LockIcon, SearchIcon, SendIcon } from '@/components/icons';
 
 export default function MailPage() {
   const [selectedContact, setSelectedContact] = useState<string | undefined>(undefined);
@@ -15,7 +15,6 @@ export default function MailPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  // Handle view switching on mobile
   useEffect(() => {
     if (selectedContact && view === 'contacts') setView('conversations');
   }, [selectedContact]);
@@ -44,9 +43,7 @@ export default function MailPage() {
   return (
     <div className="flex h-screen w-full flex-col overflow-hidden bg-[var(--bg)] text-[var(--text)]">
       
-      {/* Global Top Appbar */}
       <header className="z-50 flex h-16 flex-shrink-0 items-center justify-between border-b border-[var(--border)] bg-[var(--bg-panel)] px-4 shadow-[var(--shadow-sm)] lg:px-6">
-        {/* Left: Logo */}
         <div className="flex w-[280px] items-center gap-4">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--accent)] shadow-[var(--shadow-glow)]">
              <SendIcon className="text-white w-4 h-4 ml-0.5" />
@@ -54,7 +51,6 @@ export default function MailPage() {
           <span className="hidden text-lg font-semibold tracking-tight text-[var(--text)] sm:block">ChatMail</span>
         </div>
 
-        {/* Center: Global Search */}
         <div className="mx-4 hidden flex-1 max-w-xl md:block">
           <div className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--bg-input)] px-4 py-2 transition-all focus-within:border-[var(--accent)] focus-within:ring-1 focus-within:ring-[var(--accent)]/20">
             <SearchIcon className="h-4 w-4 text-[var(--text-muted)]" />
@@ -65,7 +61,6 @@ export default function MailPage() {
           </div>
         </div>
 
-        {/* Right: Actions & Profile */}
         <div className="flex items-center justify-end gap-3">
           <button className="hidden rounded-full p-2 text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-hover)] hover:text-[var(--accent-light)] sm:block">
             <StatusIcon className="w-5 h-5" />
@@ -87,10 +82,8 @@ export default function MailPage() {
         </div>
       </header>
 
-      {/* Main Workspace */}
       <div className="flex-1 flex overflow-hidden">
         
-        {/* Sidebar: Contacts */}
         <aside className={`
           ${view === 'contacts' ? 'flex' : 'hidden lg:flex'}
           w-full flex-col border-r border-[var(--border)] bg-[var(--bg-panel)] lg:w-[320px] xl:w-[360px]
@@ -109,7 +102,6 @@ export default function MailPage() {
           </div>
         </aside>
 
-        {/* Middle Panel: Threads */}
         <section className={`
           ${view === 'conversations' ? 'flex' : 'hidden lg:flex'}
           w-full flex-col border-r border-[var(--border)] bg-[var(--bg-panel)] lg:w-[360px] xl:w-[400px]
@@ -144,7 +136,6 @@ export default function MailPage() {
           </div>
         </section>
 
-        {/* Right Panel: Chat/Mail Content */}
         <main className={`
           ${view === 'chat' ? 'flex' : 'hidden lg:flex'}
           flex-1 flex-col bg-[var(--bg)] relative overflow-hidden
