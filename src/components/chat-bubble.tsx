@@ -53,7 +53,7 @@ export default function ChatBubble({
         >
           {/* Sender name (only for received) */}
           {!isMe && (
-            <div className="px-3 pt-2 pb-0.5 text-[12px] font-600 text-[#00a884] truncate tracking-wide">
+            <div className="truncate px-3 pt-2 pb-0.5 text-[12px] font-semibold tracking-wide text-[var(--accent)]">
               {displayName}
             </div>
           )}
@@ -66,7 +66,7 @@ export default function ChatBubble({
                 [&_p]:mb-1 last:[&_p]:mb-0 
                 [&_ul]:pl-5 [&_ul]:list-disc [&_ul]:my-2
                 [&_ol]:pl-5 [&_ol]:list-decimal [&_ol]:my-2
-                ${isMe ? '[&_a]:text-blue-200 hover:[&_a]:text-blue-100' : '[&_a]:text-blue-400 hover:[&_a]:text-blue-300'}`}
+                ${isMe ? '[&_a]:text-[var(--accent-dark)] hover:[&_a]:text-[var(--accent)]' : '[&_a]:text-[var(--accent-dark)] hover:[&_a]:text-[var(--accent)]'}`}
               dangerouslySetInnerHTML={{ __html: safeHtml }}
             />
           </div>
@@ -75,10 +75,10 @@ export default function ChatBubble({
           {(cc?.length || bcc?.length) ? (
             <div className="px-4 pb-2 flex flex-wrap gap-1.5">
               {cc?.map(c => (
-                <span key={c} className="text-[10px] bg-black/20 rounded-md px-2 py-1 font-medium">CC: {c}</span>
+                <span key={c} className="rounded-md bg-black/5 px-2 py-1 text-[10px] font-medium">CC: {c}</span>
               ))}
               {bcc?.map(b => (
-                <span key={b} className="text-[10px] bg-black/20 rounded-md px-2 py-1 font-medium">BCC: {b}</span>
+                <span key={b} className="rounded-md bg-black/5 px-2 py-1 text-[10px] font-medium">BCC: {b}</span>
               ))}
             </div>
           ) : null}
@@ -92,7 +92,7 @@ export default function ChatBubble({
                   href={att.url}
                   download
                   className={`flex items-center gap-3 transition rounded-lg px-3 py-2.5 text-sm backdrop-blur-sm
-                    ${isMe ? 'bg-black/10 hover:bg-black/20 text-[var(--sent-text)]' : 'bg-[var(--bg-panel)] hover:bg-black/20 text-[var(--received-text)]'}
+                    ${isMe ? 'bg-black/5 hover:bg-black/10 text-[var(--sent-text)]' : 'bg-[var(--bg-surface)] hover:bg-black/5 text-[var(--received-text)]'}
                   `}
                 >
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" className="opacity-80 flex-shrink-0">
@@ -106,11 +106,11 @@ export default function ChatBubble({
 
           {/* Timestamp + read receipt row */}
           <div className="flex items-center justify-end gap-2 px-4 pb-2 pt-1">
-            <span className={`text-[11px] font-medium tracking-wide ${isMe ? 'text-white/60' : 'text-[#8696a0]'}`}>
+            <span className={`text-[11px] font-medium tracking-wide ${isMe ? 'text-white/70' : 'text-[var(--text-muted)]'}`}>
               {formatTime(timestamp)}
             </span>
             {isMe && (
-              <svg viewBox="0 0 16 11" width="14" height="11" fill="currentColor" className="text-[#31a24c] flex-shrink-0">
+              <svg viewBox="0 0 16 11" width="14" height="11" fill="currentColor" className="flex-shrink-0 text-emerald-500">
                 <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.88a.32.32 0 0 1-.484.032l-.358-.325a.32.32 0 0 0-.484.032l-.378.48a.418.418 0 0 0 .036.54l1.32 1.267a.32.32 0 0 0 .484-.032l6.273-8.03a.366.366 0 0 0-.06-.514zm-5.108 0l-.477-.372a.365.365 0 0 0-.51.063L3.559 9.88a.32.32 0 0 1-.485.032l-.358-.325a.32.32 0 0 0-.484.032l-.378.48a.418.418 0 0 0 .036.54l1.32 1.267a.32.32 0 0 0 .484-.032l6.273-8.03a.366.366 0 0 0-.06-.514z" />
               </svg>
             )}

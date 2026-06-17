@@ -94,13 +94,13 @@ export default function ContactsList({ onSelect, selectedId }: ContactsListProps
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex h-full flex-col">
       {/* Search Bar */}
       <div className="mb-4 px-2">
-        <div className="flex items-center gap-2 bg-[var(--bg-input)] rounded-full px-4 py-2.5 border border-[var(--border)] focus-within:border-[#00a884] focus-within:ring-1 focus-within:ring-[#00a884]/20 transition-all">
-          <SearchIcon className="text-[#8696a0] w-4 h-4 flex-shrink-0" />
+        <div className="flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-input)] px-4 py-2.5 transition-all focus-within:border-[var(--accent)] focus-within:ring-1 focus-within:ring-[var(--accent)]/20">
+          <SearchIcon className="h-4 w-4 flex-shrink-0 text-[var(--text-muted)]" />
           <input 
-            className="flex-1 bg-transparent text-sm text-[#e9edef] placeholder-[#8696a0] focus:outline-none"
+            className="flex-1 bg-transparent text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none"
             placeholder="Search contacts..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -112,11 +112,11 @@ export default function ContactsList({ onSelect, selectedId }: ContactsListProps
       <div className="flex-1 overflow-y-auto pr-1.5 pb-4 space-y-1.5 custom-scrollbar">
         {loading ? (
           <div className="flex flex-col items-center justify-center h-40 gap-3 animate-pulse">
-            <div className="w-8 h-8 border-2 border-[var(--border)] border-t-[#00a884] rounded-full animate-spin"></div>
-            <span className="text-[#8696a0] text-xs font-medium tracking-wider">LOADING</span>
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[var(--border)] border-t-[var(--accent)]"></div>
+            <span className="text-xs font-medium tracking-wider text-[var(--text-muted)]">LOADING</span>
           </div>
         ) : filteredContacts.length === 0 ? (
-          <div className="text-[#8696a0] text-center py-12 text-sm font-medium px-4">
+          <div className="px-4 py-12 text-center text-sm font-medium text-[var(--text-muted)]">
             {searchTerm ? `No contacts match "${searchTerm}"` : 'No contacts found.'}
           </div>
         ) : (
@@ -127,16 +127,16 @@ export default function ContactsList({ onSelect, selectedId }: ContactsListProps
                 key={contact.id} 
                 onClick={() => onSelect && onSelect(contact.id)}
                 className={`
-                  flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all duration-150
+                  flex cursor-pointer items-center gap-3 rounded-2xl border p-3 transition-all duration-150
                   ${isSelected 
-                    ? 'bg-[var(--accent)]/10 border border-[var(--accent)]/30 shadow-sm' 
-                    : 'hover:bg-[var(--bg-hover)] border border-transparent active:bg-[var(--bg-surface)]'
+                    ? 'border-[var(--accent)]/20 bg-[var(--accent)]/10 shadow-[var(--shadow-sm)]' 
+                    : 'border-transparent hover:bg-[var(--bg-hover)] active:bg-[var(--bg-surface)]'
                   }
                 `}
               >
                 {/* Avatar */}
                 <div className={`
-                  w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold text-sm shadow-sm flex-shrink-0
+                  flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full text-sm font-semibold text-white shadow-sm
                   bg-gradient-to-br ${isSelected ? 'from-[#00a884] to-[#008069]' : getAvatarColor(index)}
                 `}>
                   {contact.name.charAt(0).toUpperCase()}
@@ -145,19 +145,19 @@ export default function ContactsList({ onSelect, selectedId }: ContactsListProps
                 {/* Contact Info */}
                 <div className="flex-1 min-w-0 flex flex-col justify-center">
                   <div className="flex justify-between items-center mb-1">
-                    <span className={`font-semibold truncate text-sm ${isSelected ? 'text-[#00a884]' : 'text-[#e9edef]'}`}>
+                    <span className={`truncate text-sm font-semibold ${isSelected ? 'text-[var(--accent)]' : 'text-[var(--text)]'}`}>
                       {contact.name}
                     </span>
-                    <span className={`text-xs flex-shrink-0 font-medium ${contact.unread ? 'text-[#00a884]' : 'text-[#8696a0]'}`}>
+                    <span className={`flex-shrink-0 text-xs font-medium ${contact.unread ? 'text-[var(--accent)]' : 'text-[var(--text-muted)]'}`}>
                       {contact.time}
                     </span>
                   </div>
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs text-[#8696a0] truncate block line-clamp-1">
+                    <span className="block truncate text-xs text-[var(--text-muted)] line-clamp-1">
                       {contact.lastMessage}
                     </span>
                     {(contact.unread ?? 0) > 0 && (
-                      <span className="bg-[#00a884] text-[var(--bg)] text-[10px] font-bold px-2 py-0.5 rounded-full min-w-fit flex-shrink-0 shadow-sm">
+                      <span className="min-w-fit flex-shrink-0 rounded-full bg-[var(--accent)] px-2 py-0.5 text-[10px] font-bold text-white shadow-sm">
                         {(contact.unread ?? 0) > 99 ? '99+' : contact.unread}
                       </span>
                     )}
@@ -171,8 +171,8 @@ export default function ContactsList({ onSelect, selectedId }: ContactsListProps
 
       {/* Status Bar */}
       <div className="px-2 py-3 border-t border-[var(--border)] mt-auto">
-        <div className="flex items-center gap-2 text-xs text-[#8696a0] px-3">
-          <div className="w-2 h-2 bg-[#00a884] rounded-full animate-pulse"></div>
+        <div className="flex items-center gap-2 px-3 text-xs text-[var(--text-muted)]">
+          <div className="h-2 w-2 animate-pulse rounded-full bg-[var(--accent)]"></div>
           <span>Connected to Gmail</span>
         </div>
       </div>

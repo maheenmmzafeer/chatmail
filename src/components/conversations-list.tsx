@@ -77,10 +77,10 @@ export default function ConversationsList({ contactId, onSelect, selectedId }: C
       
       {/* Search Bar */}
       <div className="mb-4 px-2">
-        <div className="flex items-center gap-2 bg-[var(--bg-input)] rounded-full px-4 py-2.5 border border-[var(--border)] focus-within:border-[#00a884] focus-within:ring-1 focus-within:ring-[#00a884]/20 transition-all">
-          <SearchIcon className="text-[#8696a0] w-4 h-4 flex-shrink-0" />
+        <div className="flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-input)] px-4 py-2.5 transition-all focus-within:border-[var(--accent)] focus-within:ring-1 focus-within:ring-[var(--accent)]/20">
+          <SearchIcon className="h-4 w-4 flex-shrink-0 text-[var(--text-muted)]" />
           <input
-            className="flex-1 bg-transparent text-sm text-[#e9edef] placeholder-[#8696a0] focus:outline-none"
+            className="flex-1 bg-transparent text-sm text-[var(--text)] placeholder:text-[var(--text-muted)] focus:outline-none"
             placeholder="Search conversations..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -92,11 +92,11 @@ export default function ConversationsList({ contactId, onSelect, selectedId }: C
       <div className="flex-1 overflow-y-auto pr-1.5 pb-4 space-y-1.5 custom-scrollbar">
         {loading ? (
           <div className="flex flex-col items-center justify-center h-40 gap-4 animate-pulse">
-            <div className="w-8 h-8 border-2 border-[var(--border)] border-t-[#00a884] rounded-full animate-spin"></div>
-            <span className="text-[#8696a0] text-xs font-semibold tracking-wider">LOADING</span>
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[var(--border)] border-t-[var(--accent)]"></div>
+            <span className="text-xs font-semibold tracking-wider text-[var(--text-muted)]">LOADING</span>
           </div>
         ) : filteredThreads.length === 0 ? (
-          <div className="text-[#8696a0] text-center py-12 text-sm font-medium px-4">
+          <div className="px-4 py-12 text-center text-sm font-medium text-[var(--text-muted)]">
             {searchTerm ? `No conversations match "${searchTerm}"` : 'No threads found.'}
           </div>
         ) : (
@@ -107,27 +107,27 @@ export default function ConversationsList({ contactId, onSelect, selectedId }: C
                 key={thread.id}
                 onClick={() => onSelect && onSelect(thread.id)}
                 className={`
-                  flex flex-col p-3 rounded-lg cursor-pointer transition-all duration-150
+                  flex cursor-pointer flex-col rounded-2xl border p-3 transition-all duration-150
                   ${isActive 
-                    ? 'bg-[var(--accent)]/10 border border-[var(--accent)]/30 shadow-sm' 
-                    : 'hover:bg-[var(--bg-hover)] border border-transparent active:bg-[var(--bg-surface)]'
+                    ? 'border-[var(--accent)]/20 bg-[var(--accent)]/10 shadow-[var(--shadow-sm)]' 
+                    : 'border-transparent hover:bg-[var(--bg-hover)] active:bg-[var(--bg-surface)]'
                   }
                 `}
               >
                 <div className="flex items-center justify-between gap-2 mb-1.5">
-                  <span className={`text-sm truncate font-semibold ${isActive ? 'text-[#00a884]' : 'text-[#e9edef]'}`}>
+                  <span className={`truncate text-sm font-semibold ${isActive ? 'text-[var(--accent)]' : 'text-[var(--text)]'}`}>
                     {thread.subject || `Thread ${thread.id.slice(0, 6)}`}
                   </span>
-                  <span className={`text-xs flex-shrink-0 font-medium ${thread.unread ? 'text-[#00a884]' : 'text-[#8696a0]'}`}>
+                  <span className={`flex-shrink-0 text-xs font-medium ${thread.unread ? 'text-[var(--accent)]' : 'text-[var(--text-muted)]'}`}>
                     {thread.lastMessageTime || '---'}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-[#8696a0] truncate block line-clamp-1">
+                  <span className="block truncate text-xs text-[var(--text-muted)] line-clamp-1">
                     {thread.snippet || "No preview available..."}
                   </span>
                   {thread.unread && (
-                    <div className="w-2 h-2 bg-[#00a884] rounded-full flex-shrink-0"></div>
+                    <div className="h-2 w-2 flex-shrink-0 rounded-full bg-[var(--accent)]"></div>
                   )}
                 </div>
               </div>
