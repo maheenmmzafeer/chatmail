@@ -42,16 +42,12 @@ export default function InfoPageShell({
 
             <div className="flex h-full flex-col justify-center border-l border-[var(--border)] pl-0 lg:pl-10">
               <div className="max-w-xl space-y-4 text-[var(--text-muted)]">
-                <div className="flex items-center gap-3">
-                  <span className="h-px flex-1 bg-[var(--border)]" />
-                  <span className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--text-secondary)]">At a glance</span>
-                  <span className="h-px flex-1 bg-[var(--border)]" />
-                </div>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--text-secondary)]">Overview</p>
                 <p className="text-sm leading-relaxed sm:text-base">
-                  These pages follow the same light visual language as the home page with open spacing, soft gradients and simple content blocks instead of stacked cards.
+                  ChatMail keeps Gmail conversations easy to follow by presenting threads in a chat-style layout.
                 </p>
                 <p className="text-sm leading-relaxed sm:text-base">
-                  The result is a cleaner public surface that feels closer to a finished portfolio project.
+                  If you are reviewing the project, start with the home page, then read the About, Privacy Policy and Terms pages for a clear summary of scope and usage.
                 </p>
               </div>
             </div>
