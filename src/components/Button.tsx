@@ -17,18 +17,18 @@ export default function Button({
   children,
   ...props
 }: ButtonProps) {
-  const baseStyles = "inline-flex items-center justify-center font-semibold transition-all duration-200 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0b141a] focus:ring-[#00a884]";
-  
+  const baseStyles = 'inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/30 focus:ring-offset-2 focus:ring-offset-[var(--bg)]';
+
   const variants = {
-    primary: "bg-[#00a884] hover:bg-[#008f6f] text-white shadow-lg shadow-[#00a884]/20",
-    secondary: "bg-[#202c33] hover:bg-[#2a3942] text-[#e9edef] border border-white/5",
-    outline: "bg-transparent border border-[#00a884] text-[#00a884] hover:bg-[#00a884]/10",
+    primary: 'bg-[var(--accent)] text-white shadow-[var(--shadow-glow)] hover:bg-[var(--accent-light)] active:scale-[0.98]',
+    secondary: 'border border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text)] hover:bg-[var(--bg-hover)] active:scale-[0.98]',
+    outline: 'border border-[var(--accent)]/30 bg-transparent text-[var(--accent-light)] hover:bg-[var(--accent)]/10 active:scale-[0.98]',
   };
-  
+
   const sizes = {
-    sm: "px-4 py-1.5 text-sm",
-    md: "px-6 py-2.5 text-[15px]",
-    lg: "px-8 py-3 text-lg",
+    sm: 'px-4 py-2 text-sm',
+    md: 'px-6 py-3 text-sm',
+    lg: 'px-8 py-3.5 text-base',
   };
 
   const combinedClasses = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;

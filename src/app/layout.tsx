@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: 'ChatMail - Gmail with WhatsApp Interface',
-  description: 'Experience Gmail in a modern chat interface',
+  title: 'ChatMail - Gmail in a chat interface',
+  description: 'A calmer, chat-style way to read and reply to Gmail conversations.',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

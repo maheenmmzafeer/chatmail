@@ -54,7 +54,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 px-4 py-4 sm:px-6">
-      <nav className="glass-panel mx-auto flex max-w-7xl items-center justify-between rounded-2xl border border-[var(--border)] px-4 py-3 shadow-[var(--shadow-sm)] sm:px-6">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-[28px] border border-[var(--border)] bg-[var(--bg-panel)] px-4 py-3 shadow-[var(--shadow-sm)] backdrop-blur-xl sm:px-6">
         <Link href="/" className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent)] shadow-[var(--shadow-glow)]">
             <SendIcon className="h-4 w-4 text-white" />
@@ -66,8 +66,11 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Link href="#features" className="rounded-xl px-4 py-2 text-sm font-medium text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-hover)] hover:text-[var(--text)]">
-            Features
+          <Link href="/" className="rounded-xl px-4 py-2 text-sm font-medium text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-hover)] hover:text-[var(--text)]">
+            Home
+          </Link>
+          <Link href="/about" className="rounded-xl px-4 py-2 text-sm font-medium text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-hover)] hover:text-[var(--text)]">
+            About
           </Link>
           <Link href="/privacy" className="rounded-xl px-4 py-2 text-sm font-medium text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-hover)] hover:text-[var(--text)]">
             Privacy

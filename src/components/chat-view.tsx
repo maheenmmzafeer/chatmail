@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, useRef } from 'react';
 import ChatBubble from './chat-bubble';
-import { EmojiIcon, AttachIcon, SendIcon, MenuIcon } from './icons';
+import { SendIcon } from './icons';
 
 interface Message {
   id: string;
@@ -135,11 +135,6 @@ export default function ChatView({ threadId, onBack, currentUserEmail }: { threa
             </span>
           </div>
         </div>
-        <div className="flex items-center gap-1">
-          <button className="p-2 text-[#8696a0] hover:text-[#e9edef] hover:bg-[var(--bg-hover)] rounded-full transition-colors flex-shrink-0" aria-label="More options">
-            <MenuIcon className="w-5 h-5" />
-          </button>
-        </div>
       </header>
 
       {/* Messages Area */}
@@ -183,21 +178,6 @@ export default function ChatView({ threadId, onBack, currentUserEmail }: { threa
       {/* Input Bar */}
       <footer className="px-4 sm:px-6 py-4 bg-[var(--bg-panel)] border-t border-[var(--border)] z-20 flex-shrink-0">
         <div className="flex items-end gap-3 max-w-4xl mx-auto">
-          <div className="flex gap-1">
-            <button 
-              className="p-2.5 text-[#8696a0] hover:text-[#00a884] hover:bg-[var(--bg-hover)] rounded-full transition-all flex-shrink-0"
-              aria-label="Add emoji"
-            >
-              <EmojiIcon className="w-6 h-6" />
-            </button>
-            <button 
-              className="p-2.5 text-[#8696a0] hover:text-[#00a884] hover:bg-[var(--bg-hover)] rounded-full transition-all flex-shrink-0"
-              aria-label="Attach file"
-            >
-              <AttachIcon className="w-6 h-6 -rotate-45" />
-            </button>
-          </div>
-          
           <div className="flex-1 bg-[var(--bg)] border border-[var(--border)] rounded-3xl relative focus-within:ring-1 focus-within:ring-[#00a884] focus-within:border-[#00a884] transition-all">
             <textarea
               ref={textareaRef}
