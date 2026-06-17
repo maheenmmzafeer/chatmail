@@ -10,3 +10,8 @@ yarn-error.log*
 output/
 .vercel/
 prisma/dev.db
+*.tsbuildinfo
+coverage/
+playwright-report/
+test-results/
+.turbo/
