@@ -24,8 +24,6 @@ export default function Footer() {
               <ul className="space-y-3 text-sm text-[var(--text-muted)]">
                 <li><Link href="/" className="transition-colors hover:text-[var(--text)]">Home</Link></li>
                 <li><Link href="/about" className="transition-colors hover:text-[var(--text)]">About</Link></li>
-                <li><Link href="/mail" className="transition-colors hover:text-[var(--text)]">Mail</Link></li>
-                <li><Link href="/login" className="transition-colors hover:text-[var(--text)]">Login</Link></li>
               </ul>
             </div>
 

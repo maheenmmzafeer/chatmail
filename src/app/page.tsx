@@ -158,10 +158,6 @@ export default function Home() {
 
                     <div className="mt-5 flex items-center justify-between rounded-2xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-xs text-[var(--text-muted)]">
                       <span>Replying in the current Gmail thread</span>
-                      <span className="inline-flex items-center gap-1">
-                        <span className="h-2 w-2 rounded-full bg-[var(--accent)]" />
-                        Secure
-                      </span>
                     </div>
                   </div>
                 </div>

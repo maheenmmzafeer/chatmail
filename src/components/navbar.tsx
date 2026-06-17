@@ -81,9 +81,6 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button href="/login" variant="secondary" size="sm" className="hidden sm:inline-flex">
-            Sign in
-          </Button>
           <Button href="/login" size="sm">
             Get started
           </Button>
