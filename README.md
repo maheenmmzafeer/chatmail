@@ -4,7 +4,9 @@ ChatMail is a full-stack Gmail client that presents email conversations in a cha
 
 ## Overview
 
-ChatMail uses Google OAuth for sign-in, Gmail API routes for mail access and a Next.js App Router frontend for the public pages and authenticated workspace. The repository is organized around two clear flows:
+ChatMail uses Google OAuth for sign-in, Gmail API routes for mail access and a Next.js App Router frontend for the public pages and authenticated workspace.
+
+The repository is organized around two clear flows:
 
 - Public pages for Home, About, Privacy Policy, Terms of Service and Login
 - Authenticated mail workspace for contacts, inbox threads and chat-style replies
@@ -23,15 +25,23 @@ ChatMail uses Google OAuth for sign-in, Gmail API routes for mail access and a N
 
 The screenshot set below reflects the current public pages and inbox workspace.
 
-| Home | About | Login |
-| --- | --- | --- |
-| ![Home page](screenshots/home.png) | ![About page](screenshots/about.png) | ![Login page](screenshots/login.png) |
+### Homepage
 
-| Privacy Policy | Terms of Service | Inbox |
-| --- | --- | --- |
-| ![Privacy Policy page](screenshots/privacy.png) | ![Terms of Service page](screenshots/terms.png) | ![Inbox workspace](screenshots/inbox.png) |
+![Home page](screenshots/home.png)
 
-The public page captures are included in the `screenshots` folder for reference.
+### About
+
+![About page](screenshots/about.png)
+
+### Login
+
+![Login page](screenshots/login.png)
+
+### Inbox
+
+![Inbox workspace](screenshots/inbox.png)
+
+Screenshot captures are included in the `screenshots` folder for reference.
 
 ## Tech Stack
 
